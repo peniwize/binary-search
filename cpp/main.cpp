@@ -27,6 +27,28 @@ using namespace std;
 
 class Solution {
 public:
+#if 0
+    /*
+        Based on indexing: [left, right]
+    */
+    int search(vector<int> const& nums, int const target) {
+        ssize_t left = 0, right = nums.size() - 1;
+        while (left <= right) {
+            int mid = left + (right - left + 1) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+               right = mid - 1;
+            }
+        }
+        return -1;
+    }
+#else // #if 0
+    /*
+        Based on iterators: [left, right)
+    */
     int search(vector<int>& nums, int target) {
         auto left = nums.begin();
         auto right = nums.end();
@@ -42,6 +64,7 @@ public:
         }
         return -1;
     }
+#endif // #if 0
 };
 
 // [----------------(120 columns)---------------> Module Code Delimiter <---------------(120 columns)----------------]
